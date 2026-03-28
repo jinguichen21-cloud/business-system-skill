@@ -1,0 +1,278 @@
+{
+  "skill_id": "skill_e21e630249304683",
+  "skill_name": "business-system-skill",
+  "version": "1.0.0",
+  "testcases": [
+    {
+      "id": "tc_create_001",
+      "category": "happy_path",
+      "description": "基础创建客户管理系统",
+      "user_input": "帮我创建一个客户管理系统",
+      "expected": {
+        "command": "dws aiapp create",
+        "params": {
+          "--prompt": "帮我创建一个客户管理系统",
+          "--skills": "skill_e21e630249304683",
+          "--format": "json"
+        }
+      }
+    },
+    {
+      "id": "tc_create_002",
+      "category": "happy_path",
+      "description": "创建进销存系统",
+      "user_input": "我需要一个进销存系统，能管理采购入库、销售出库和库存盘点",
+      "expected": {
+        "command": "dws aiapp create",
+        "params": {
+          "--prompt": "我需要一个进销存系统，能管理采购入库、销售出库和库存盘点",
+          "--skills": "skill_e21e630249304683",
+          "--format": "json"
+        }
+      }
+    },
+    {
+      "id": "tc_create_003",
+      "category": "happy_path",
+      "description": "创建订单管理系统",
+      "user_input": "做一个订单管理系统",
+      "expected": {
+        "command": "dws aiapp create",
+        "params": {
+          "--prompt": "做一个订单管理系统",
+          "--skills": "skill_e21e630249304683",
+          "--format": "json"
+        }
+      }
+    },
+    {
+      "id": "tc_modify_001",
+      "category": "happy_path",
+      "description": "修改系统添加审批流程",
+      "context": {
+        "threadId": "thread_abc123"
+      },
+      "user_input": "给系统增加一个审批流程",
+      "expected": {
+        "command": "dws aiapp modify",
+        "params": {
+          "--thread-id": "thread_abc123",
+          "--prompt": "给系统增加一个审批流程",
+          "--skills": "skill_e21e630249304683",
+          "--format": "json"
+        }
+      }
+    },
+    {
+      "id": "tc_query_001",
+      "category": "happy_path",
+      "description": "查询任务状态",
+      "context": {
+        "taskId": "task_xyz789"
+      },
+      "user_input": "查看一下系统生成进度",
+      "expected": {
+        "command": "dws aiapp query",
+        "params": {
+          "--task-id": "task_xyz789",
+          "--format": "json"
+        },
+        "should_not_have": ["--skills"]
+      }
+    },
+    {
+      "id": "tc_colloquial_001",
+      "category": "colloquial",
+      "description": "口语化表述 - 搭建",
+      "user_input": "搭建一个后台管理系统",
+      "expected": {
+        "command": "dws aiapp create",
+        "params": {
+          "--skills": "skill_e21e630249304683"
+        }
+      }
+    },
+    {
+      "id": "tc_colloquial_002",
+      "category": "colloquial",
+      "description": "口语化表述 - 做个",
+      "user_input": "做个OA系统",
+      "expected": {
+        "command": "dws aiapp create",
+        "params": {
+          "--skills": "skill_e21e630249304683"
+        }
+      }
+    },
+    {
+      "id": "tc_colloquial_003",
+      "category": "colloquial",
+      "description": "口语化表述 - 改一下",
+      "context": {
+        "threadId": "thread_def456"
+      },
+      "user_input": "改一下报表模块",
+      "expected": {
+        "command": "dws aiapp modify",
+        "params": {
+          "--thread-id": "thread_def456",
+          "--skills": "skill_e21e630249304683"
+        }
+      }
+    },
+    {
+      "id": "tc_skill_combo_001",
+      "category": "skill_combination",
+      "description": "组合视觉设计技能",
+      "user_input": "创建一个界面美观的订单管理系统",
+      "expected": {
+        "command": "dws aiapp create",
+        "params": {
+          "--skills": "skill_e21e630249304683,official_b3f7380095ef4e31",
+          "--format": "json"
+        }
+      }
+    },
+    {
+      "id": "tc_attachment_001",
+      "category": "attachment",
+      "description": "带需求表创建系统",
+      "user_input": "根据这份需求表创建系统",
+      "context": {
+        "attachments": [{"name": "需求表.xlsx", "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "url": "https://...", "size": 102400}]
+      },
+      "expected": {
+        "command": "dws aiapp create",
+        "params": {
+          "--skills": "skill_e21e630249304683",
+          "--attachments": "[{\"name\":\"需求表.xlsx\",\"type\":\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\",\"url\":\"https://...\",\"size\":102400}]"
+        }
+      }
+    },
+    {
+      "id": "tc_modify_attachment_001",
+      "category": "attachment",
+      "description": "modify 支持图片附件",
+      "context": {
+        "threadId": "thread_img123",
+        "attachments": [{"name": "homepage.png", "type": "image/png", "url": "https://...", "size": 512000}]
+      },
+      "user_input": "根据这张图优化首页视觉风格",
+      "expected": {
+        "command": "dws aiapp modify",
+        "params": {
+          "--thread-id": "thread_img123",
+          "--skills": "skill_e21e630249304683",
+          "--attachments": "[{\"name\":\"homepage.png\",\"type\":\"image/png\",\"url\":\"https://...\",\"size\":512000}]"
+        }
+      }
+    },
+    {
+      "id": "tc_modify_attachment_002",
+      "category": "negative",
+      "description": "modify 不支持 Excel 附件",
+      "context": {
+        "threadId": "thread_excel123",
+        "attachments": [{"name": "需求表.xlsx", "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "url": "https://...", "size": 102400}]
+      },
+      "user_input": "根据这个 Excel 继续修改刚才那个系统",
+      "expected": {
+        "should_not_generate_command": "dws aiapp modify",
+        "reason": "modify 当前不支持 Excel 附件"
+      }
+    },
+    {
+      "id": "tc_negative_001",
+      "category": "negative",
+      "description": "非业务系统场景 - 官网",
+      "user_input": "帮我创建一个企业官网",
+      "expected": {
+        "should_not_trigger": true,
+        "reason": "企业官网应使用 brand-website-skill"
+      }
+    },
+    {
+      "id": "tc_negative_002",
+      "category": "negative",
+      "description": "非业务系统场景 - 活动页",
+      "user_input": "做一个年会活动页面",
+      "expected": {
+        "should_not_trigger": true,
+        "reason": "活动页应使用 event-website-skill"
+      }
+    },
+    {
+      "id": "tc_robustness_001",
+      "category": "robustness",
+      "description": "无 threadId 时要求修改",
+      "user_input": "修改系统的报表功能",
+      "expected": {
+        "action": "ask_for_threadId",
+        "reason": "modify 需要 threadId，应询问用户是否新建"
+      }
+    },
+    {
+      "id": "tc_param_001",
+      "category": "param_conversion",
+      "description": "正确传递 skills 参数",
+      "user_input": "创建ERP系统",
+      "expected": {
+        "params": {
+          "--skills": "skill_e21e630249304683"
+        },
+        "must_not": "省略 --skills 参数"
+      }
+    },
+    {
+      "id": "tc_param_002",
+      "category": "param_conversion",
+      "description": "query 不带 skills",
+      "context": {
+        "taskId": "task_test123"
+      },
+      "user_input": "看看生成好了没",
+      "expected": {
+        "command": "dws aiapp query",
+        "should_not_have": ["--skills"]
+      }
+    },
+    {
+      "id": "tc_query_followup_001",
+      "category": "polling",
+      "description": "任务 running 时应继续追踪，不应查两次后放弃",
+      "context": {
+        "taskId": "task_running123",
+        "queryResponse": {
+          "status": "running",
+          "threadViewUrl": "https://example/chat?threadId=thread_abc",
+          "progress": {"summary": "当前正在执行：创建应用。"}
+        }
+      },
+      "user_input": "继续帮我盯着这个系统什么时候生成好",
+      "expected": {
+        "action": "continue_polling_or_schedule_goal_oriented_task",
+        "reason": "running 状态下应继续跟踪，不应过早让用户自行查询"
+      }
+    },
+    {
+      "id": "tc_query_followup_002",
+      "category": "polling",
+      "description": "定时任务在成功后应主动终止",
+      "context": {
+        "taskId": "task_done123",
+        "scheduledPolling": true,
+        "queryResponse": {
+          "status": "succeeded",
+          "result": {
+            "appPreviewUrl": "https://example/app/preview/123"
+          }
+        }
+      },
+      "user_input": "如果已经创建好了就告诉我，并结束后续查询",
+      "expected": {
+        "action": "stop_polling_and_delete_scheduled_task",
+        "reason": "已拿到最终结果后不应继续保留定时任务"
+      }
+    }
+  ]
+}
