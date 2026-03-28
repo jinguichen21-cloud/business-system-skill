@@ -1,0 +1,32 @@
+{
+    "name": "business-system-skill",
+    "version": "1.0.0",
+    "description": "业务系统全栈搭建技能 — 通过 dws aiapp CLI 创建和持续跟踪 CRM、ERP、OA、进销存等管理系统",
+    "keywords": [
+        "dingtalk",
+        "business",
+        "system",
+        "管理系统",
+        "业务系统",
+        "CRM",
+        "ERP",
+        "OA",
+        "进销存",
+        "dws",
+        "aiapp",
+        "skill"
+    ],
+    "author": "DingTalk AI",
+    "license": "MIT",
+    "clawhub": {
+        "requiresBinaries": [
+            "dws"
+        ],
+        "skillId": "skill_e21e630249304683",
+        "category": "business-system"
+    },
+    "scripts": {
+        "test": "echo 'Validate tests/testcases.json with a skill evaluator, including attachments, threadViewUrl/appPreviewUrl, and goal-oriented polling behavior.'",
+        "check": "echo 'Check SKILL.md and references for consistency before publishing.'"
+    }
+}
